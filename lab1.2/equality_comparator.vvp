@@ -1,0 +1,56 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010C73B8 .scope module, "tb_equality_comparator" "tb_equality_comparator" 2 4;
+ .timescale -9 -12;
+v010C9198_0 .var "A", 3 0;
+v010C91F0_0 .var "B", 3 0;
+v010C9248_0 .net "equal", 0 0, L_010C92A0; 1 drivers
+S_010C7440 .scope module, "uut" "equality_comparator" 2 10, 3 2, S_010C73B8;
+ .timescale 0 0;
+v010C2CB8_0 .net "A", 3 0, v010C9198_0; 1 drivers
+v010C2D10_0 .net "B", 3 0, v010C91F0_0; 1 drivers
+v010C2D68_0 .alias "equal", 0 0, v010C9248_0;
+L_010C92A0 .cmp/eq 4, v010C9198_0, v010C91F0_0;
+    .scope S_010C73B8;
+T_0 ;
+    %vpi_call 2 17 "$display", "Time\011A\011B\011Equal";
+    %vpi_call 2 18 "$monitor", "%g\011%b\011%b\011%b", $time, v010C9198_0, v010C91F0_0, v010C9248_0;
+    %set/v v010C9198_0, 0, 4;
+    %set/v v010C91F0_0, 0, 4;
+    %delay 10000, 0;
+    %movi 8, 10, 4;
+    %set/v v010C9198_0, 8, 4;
+    %movi 8, 10, 4;
+    %set/v v010C91F0_0, 8, 4;
+    %delay 10000, 0;
+    %movi 8, 12, 4;
+    %set/v v010C9198_0, 8, 4;
+    %set/v v010C91F0_0, 1, 4;
+    %delay 10000, 0;
+    %set/v v010C9198_0, 1, 4;
+    %set/v v010C91F0_0, 1, 4;
+    %delay 10000, 0;
+    %movi 8, 3, 4;
+    %set/v v010C9198_0, 8, 4;
+    %movi 8, 6, 4;
+    %set/v v010C91F0_0, 8, 4;
+    %delay 10000, 0;
+    %vpi_call 2 25 "$finish";
+    %end;
+    .thread T_0;
+    .scope S_010C73B8;
+T_1 ;
+    %vpi_call 2 29 "$dumpfile", "equality_comparator.vcd";
+    %vpi_call 2 30 "$dumpvars", 1'sb0, S_010C73B8;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_equality_comparator.v";
+    "equality_comparator.v";

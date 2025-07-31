@@ -1,0 +1,51 @@
+$date
+	Thu Jul 31 14:10:20 2025
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_equality_comparator $end
+$var wire 1 ! equal $end
+$var reg 4 " A [3:0] $end
+$var reg 4 # B [3:0] $end
+$scope module uut $end
+$var wire 4 $ A [3:0] $end
+$var wire 4 % B [3:0] $end
+$var wire 1 ! equal $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b0 %
+b0 $
+b0 #
+b0 "
+1!
+$end
+#10000
+b1010 #
+b1010 %
+b1010 "
+b1010 $
+1!
+#20000
+b1111 #
+b1111 %
+b1100 "
+b1100 $
+0!
+#30000
+b1111 "
+b1111 $
+1!
+#40000
+b110 #
+b110 %
+b11 "
+b11 $
+0!
+#50000

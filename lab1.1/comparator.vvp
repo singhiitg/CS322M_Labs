@@ -1,0 +1,60 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 9;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_00878EF0 .scope module, "tb_comparator" "tb_comparator" 2 9;
+ .timescale -9 -9;
+v00877BB8_0 .var "A", 0 0;
+v00877C10_0 .var "B", 0 0;
+v00877C68_0 .net "o1", 0 0, L_00877CF8; 1 drivers
+v0087E910_0 .net "o2", 0 0, L_00973BF0; 1 drivers
+v0087E968_0 .net "o3", 0 0, L_0087EA38; 1 drivers
+S_00878DE0 .scope module, "uut" "comparator" 2 17, 3 2, S_00878EF0;
+ .timescale 0 0;
+L_00877080 .functor NOT 1, v00877C10_0, C4<0>, C4<0>, C4<0>;
+L_00877CF8 .functor AND 1, v00877BB8_0, L_00877080, C4<1>, C4<1>;
+L_00973BB8 .functor XOR 1, v00877BB8_0, v00877C10_0, C4<0>, C4<0>;
+L_00973BF0 .functor NOT 1, L_00973BB8, C4<0>, C4<0>, C4<0>;
+L_00973C98 .functor NOT 1, v00877BB8_0, C4<0>, C4<0>, C4<0>;
+L_0087EA38 .functor AND 1, L_00973C98, v00877C10_0, C4<1>, C4<1>;
+v009731A8_0 .net "A", 0 0, v00877BB8_0; 1 drivers
+v00972F68_0 .net "B", 0 0, v00877C10_0; 1 drivers
+v00973810_0 .net *"_s0", 0 0, L_00877080; 1 drivers
+v00973868_0 .net *"_s4", 0 0, L_00973BB8; 1 drivers
+v009738C0_0 .net *"_s8", 0 0, L_00973C98; 1 drivers
+v00876F78_0 .alias "o1", 0 0, v00877C68_0;
+v00876FD0_0 .alias "o2", 0 0, v0087E910_0;
+v00877028_0 .alias "o3", 0 0, v0087E968_0;
+    .scope S_00878EF0;
+T_0 ;
+    %vpi_call 2 28 "$dumpfile", "comparator.vcd";
+    %vpi_call 2 29 "$dumpvars", 1'sb0, S_00878EF0;
+    %vpi_call 2 32 "$display", "A B | A>B A=B A<B";
+    %vpi_call 2 33 "$display", "------------------";
+    %set/v v00877BB8_0, 0, 1;
+    %set/v v00877C10_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 37 "$display", "%b %b |  %b   %b   %b", v00877BB8_0, v00877C10_0, v00877C68_0, v0087E910_0, v0087E968_0;
+    %set/v v00877BB8_0, 0, 1;
+    %set/v v00877C10_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 41 "$display", "%b %b |  %b   %b   %b", v00877BB8_0, v00877C10_0, v00877C68_0, v0087E910_0, v0087E968_0;
+    %set/v v00877BB8_0, 1, 1;
+    %set/v v00877C10_0, 0, 1;
+    %delay 10, 0;
+    %vpi_call 2 45 "$display", "%b %b |  %b   %b   %b", v00877BB8_0, v00877C10_0, v00877C68_0, v0087E910_0, v0087E968_0;
+    %set/v v00877BB8_0, 1, 1;
+    %set/v v00877C10_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 49 "$display", "%b %b |  %b   %b   %b", v00877BB8_0, v00877C10_0, v00877C68_0, v0087E910_0, v0087E968_0;
+    %vpi_call 2 51 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_comparator.v";
+    "comparator.v";
